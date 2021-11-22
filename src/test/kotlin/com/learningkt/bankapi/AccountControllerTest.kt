@@ -1,6 +1,8 @@
 package com.learningkt.bankapi
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.learningkt.bankapi.model.Account
+import com.learningkt.bankapi.repository.AccountRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

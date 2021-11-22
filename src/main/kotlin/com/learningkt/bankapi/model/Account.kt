@@ -1,4 +1,4 @@
-package com.learningkt.bankapi
+package com.learningkt.bankapi.model
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
