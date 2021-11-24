@@ -5,12 +5,14 @@ import com.learningkt.bankapi.repository.AccountRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import org.springframework.util.Assert
 import java.lang.RuntimeException
 import java.util.*
 
 @Service
 class AccountServiceImpl(private val repository: AccountRepository) : AccountService {
     override fun create(account: Account): Account {
+        Assert.hasLength(account.name,  "[nome] não pode estar em branco!")
         return repository.save(account)
     }
 

@@ -102,4 +102,21 @@ class AccountControllerTest {
         val findById = accountRepository.findById(account.id!!)
         Assertions.assertFalse(findById.isPresent)
     }
+
+    @Test
+    fun `test create account validation error empty name`(){
+        val account = accountRepository.save(Account(name = "", document = "123", phone = "98764310" ))
+        val json = ObjectMapper().writeValueAsString(account)
+
+        accountRepository.deleteAll()
+        mockMvc.perform(MockMvcRequestBuilders.post("/accounts")
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("\$.name").value(!account.name.isEmpty()))
+            .andExpect(MockMvcResultMatchers.jsonPath("\$.document").value(account.document))
+            .andExpect(MockMvcResultMatchers.jsonPath("\$.phone").value(account.phone))
+            .andDo(MockMvcResultHandlers.print())
+    }
 }
