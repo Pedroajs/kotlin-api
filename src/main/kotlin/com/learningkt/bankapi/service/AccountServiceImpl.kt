@@ -13,6 +13,15 @@ import java.util.*
 class AccountServiceImpl(private val repository: AccountRepository) : AccountService {
     override fun create(account: Account): Account {
         Assert.hasLength(account.name,  "[nome] não pode estar em branco!")
+        Assert.isTrue(account.name.length >= 5,  "[nome] deve ter no minimo 5 caracteres!")
+
+        Assert.hasLength(account.document,  "[document] não pode estar em branco!")
+        Assert.isTrue(account.document.length >= 11, "[document] deve ter no minimo 11 caracteres!")
+
+        Assert.hasLength(account.phone,  "[phone] não pode estar em branco!")
+        Assert.isTrue(account.phone.length >= 11, "[phone] deve ter no minimo 5 caracteres!")
+
+
         return repository.save(account)
     }
 
