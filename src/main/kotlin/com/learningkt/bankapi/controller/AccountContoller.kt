@@ -3,6 +3,7 @@ package com.learningkt.bankapi.controller
 import com.learningkt.bankapi.model.Account
 import com.learningkt.bankapi.repository.AccountRepository
 import com.learningkt.bankapi.service.AccountService
+import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/accounts")
 
 class AccountContoller(private val service: AccountService) {
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody account: Account): Account = service.create(account)
