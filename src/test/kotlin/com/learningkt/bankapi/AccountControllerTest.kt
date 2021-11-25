@@ -23,7 +23,7 @@ class AccountControllerTest {
 
 
     @Test
-    fun testFindAll(){
+    fun `test Find All`(){
         accountRepository.save(Account(name = "Test", document = "123", phone = "98764310" ))
         mockMvc.perform(MockMvcRequestBuilders.get("/accounts"))
                 .andExpect(MockMvcResultMatchers.status().isOk)
@@ -36,7 +36,7 @@ class AccountControllerTest {
     }
 
     @Test
-    fun testFindById(){
+    fun `test Find By Id`(){
         val account = accountRepository.save(Account(name = "Test", document = "123", phone = "98764310" ))
         mockMvc.perform(MockMvcRequestBuilders.get("/accounts/${account.id}"))
                 .andExpect(MockMvcResultMatchers.status().isOk)
@@ -49,7 +49,7 @@ class AccountControllerTest {
     }
 
     @Test
-    fun testCreateAccount(){
+    fun `test Create Account`(){
         val account = accountRepository.save(Account(name = "Test", document = "123", phone = "98764310" ))
         val json = ObjectMapper().writeValueAsString(account)
 
@@ -68,7 +68,7 @@ class AccountControllerTest {
     }
 
     @Test
-    fun testUpDateAccount(){
+    fun `test UpDate Account`(){
         val account = accountRepository
                 .save(Account(name = "Test", document = "123", phone = "98764310" ))
                 .copy(name = "updated")
@@ -90,7 +90,7 @@ class AccountControllerTest {
     }
 
     @Test
-    fun testDeleteAccount(){
+    fun `test Delete Account`(){
         val account = accountRepository
                 .save(Account(name = "Test", document = "123", phone = "98764310" ))
                 .copy(name = "updated")
